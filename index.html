@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NASA APOD App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="box">
+
+    {% if data %}
+
+        <h2>{{ data.title }}</h2>
+
+        <!-- Date editable directly above image -->
+        <form method="POST">
+            <label><b>Date:</b></label>
+            <input type="date" name="date" value="{{ data.date }}" required>
+            <button type="submit">Update</button>
+        </form>
+
+        {% if data.media_type == "image" %}
+            <img src="{{ data.url }}" alt="NASA Image">
+        {% else %}
+            <a href="{{ data.url }}" target="_blank">Watch Video</a>
+        {% endif %}
+
+        <p>{{ data.explanation }}</p>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>

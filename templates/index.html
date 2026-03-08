@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NASA APOD Viewer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="box">
+        <h1>NASA Astronomy Picture of the Day 🌌</h1>
+
+        <h2>{{ data.title }}</h2>
+        <p><b>Date:</b> {{ data.date }}</p>
+
+        {% if data.media_type == "image" %}
+            <img src="{{ data.url }}" alt="NASA Image">
+        {% else %}
+            <p>This is a video, not an image:</p>
+            <a href="{{ data.url }}" target="_blank">Open Video</a>
+        {% endif %}
+
+        <h3>Explanation</h3>
+        <p>{{ data.explanation }}</p>
+    </div>
+</body>
+</html>
